@@ -5,20 +5,20 @@ import bcrypt from 'bcrypt';
 
 export const uploadFile = async (req, res) => {
     try {
-        console.log("Incoming file:", req.file);
+        // console.log("Incoming file:", req.file);
         if (!req.file) {
             return res.status(400).json({ message: 'No file uploaded' });
         }
 
         const workbook = xlsx.read(req.file.buffer, { type: 'buffer' });
-        console.log("Workbook sheets:", workbook.SheetNames);
+        // console.log("Workbook sheets:", workbook.SheetNames);
         if (!workbook.SheetNames || workbook.SheetNames.length === 0) {
             return res.status(400).json({ message: 'No sheets found in file' });
         }
         const sheetName = workbook.SheetNames[0];
         const jsonData = xlsx.utils.sheet_to_json(workbook.Sheets[sheetName]);
 
-        console.log("Parsed data:", jsonData);
+        // console.log("Parsed data:", jsonData);
 
         if (!jsonData.length) {
             return res.status(400).json({ message: 'Sheet is empty or invalid format' });
