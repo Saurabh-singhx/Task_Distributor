@@ -27,6 +27,7 @@ A full-stack role-based task management system where **Admins** can create **Age
 - [React](https://reactjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Axios](https://axios-http.com/)
+- [Zustand](https://zustand-demo.pmnd.rs/)
 
 ### Backend:
 - [Express.js](https://expressjs.com/)
