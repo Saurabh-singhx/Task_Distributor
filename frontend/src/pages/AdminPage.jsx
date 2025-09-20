@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { UploadCloud, FileText, X, UserPlus, ChevronDown, ChevronUp } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { authStore } from '../store/authStore';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useDropzone } from 'react-dropzone'
+
 
 function AdminPage() {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -14,6 +16,13 @@ function AdminPage() {
         phone: '',
         password: ''
     });
+
+
+    const onDrop = useCallback(acceptedFiles => {
+        // Do something with the files
+        setSelectedFile(acceptedFiles[0]);
+    }, [])
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
     const { upload, createAgent, isUploading } = authStore();
 
@@ -78,7 +87,7 @@ function AdminPage() {
                 <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="flex flex-col items-center justify-center gap-2">
                         <label className="w-full cursor-pointer">
-                            <div className="flex items-center gap-3 bg-gray-100 rounded-full px-4 py-2 hover:bg-gray-200 transition justify-center">
+                            {/* <div className="flex items-center gap-3 bg-gray-100 rounded-full px-4 py-2 hover:bg-gray-200 transition justify-center">
                                 <UploadCloud size={20} className="text-sky-400" />
                                 <span className="text-sm text-gray-600">
                                     {selectedFile ? 'Change File' : 'Upload File'}
@@ -90,8 +99,30 @@ function AdminPage() {
                                 accept=".csv, .xlsx, .xls"
                                 onChange={handleFileChange}
                                 className="hidden"
-                            />
+                            /> */}
+
                         </label>
+                        <div
+                            className='w-full'
+                            {...getRootProps()}>
+                            <input
+                                onChange={handleFileChange}
+                                
+                                {...getInputProps()} />
+                            {
+                                isDragActive ?
+                                    <div className="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-sky-400 bg-sky-50 rounded-xl p-6 transition">
+                                        <UploadCloud size={32} className="text-sky-400 animate-bounce" />
+                                        <p className="text-sky-600 font-medium">Drop the files here ...</p>
+                                    </div> :
+                                    <div className="flex items-center gap-3 bg-gray-100 rounded-full px-4 py-2 hover:bg-gray-200 transition justify-center cursor-pointer">
+                                        <UploadCloud size={20} className="text-sky-400" />
+                                        <span className="text-sm text-gray-600">
+                                            {selectedFile ? 'Change File' : 'Upload File or Just Drag and Drop'}
+                                        </span>
+                                    </div>
+                            }
+                        </div>
 
                         {selectedFile && (
                             <div className="flex items-center gap-2 text-sm text-gray-700 mt-2">
