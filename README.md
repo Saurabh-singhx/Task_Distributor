@@ -19,25 +19,6 @@ A full-stack role-based task management system where **Admins** can create **Age
 - 💻 Responsive UI using Tailwind CSS
 - ⚙️ RESTful API with Express & MongoDB
 
----
-
-## 🛠️ Tech Stack
-
-### Frontend:
-- [React](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Axios](https://axios-http.com/)
-- [Zustand](https://zustand-demo.pmnd.rs/)
-
-### Backend:
-- [Express.js](https://expressjs.com/)
-- [MongoDB](https://www.mongodb.com/)
-- [Multer](https://github.com/expressjs/multer)
-- [JWT](https://jwt.io/)
-- [CSV Parser (e.g. `xlsx` or `csv-parser`)](https://www.npmjs.com/package/xlsx)
-
----
-
 ## 🚀 How to Run
 
 ### 1️⃣ Clone the repository
@@ -86,15 +67,23 @@ You can use these accounts to quickly test the app:
 | Admin | saurabh44@mail.com  | 123456   |
 | Agent | saurabh@mail.com    | 123456   |
 
+```
 
 ---
 
+## 🛠️ Tech Stack
 
+### Frontend:
+- [React](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Axios](https://axios-http.com/)
+- [Zustand](https://zustand-demo.pmnd.rs/)
 
+### Backend:
+- [Express.js](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/)
+- [Multer](https://github.com/expressjs/multer)
+- [JWT](https://jwt.io/)
+- [CSV Parser (e.g. `xlsx` or `csv-parser`)](https://www.npmjs.com/package/xlsx)
 
-
-
-
-
-
-
+---
