@@ -21,6 +21,57 @@ A full-stack role-based task management system where **Admins** can create **Age
 
 ---
 
+## 🚀 How to Run
+
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/Saurabh-singhx/Task_Distributor
+cd Task_Distributor
+
+
+# Go to backend folder
+cd backend
+
+# Install backend dependencies
+npm install
+
+# Create a .env file (check .env.example for reference)
+# Example:
+# PORT=8002
+# MONGODB_URI=mongodb://localhost:27017/task_distributor
+# JWT_SECRET=your_secret_key
+
+# Run backend server
+npm run dev
+
+# Go back to project root
+cd ..
+
+# Go to frontend folder
+cd frontend
+
+# Install frontend dependencies
+npm install
+
+# Create a .env file (check .env.example for reference)
+# Example:
+# VITE_API_URL=http://localhost:8002
+
+# Run frontend
+npm run dev
+
+##📝 Test Login Credentials
+
+You can use these accounts to quickly test the app:
+
+| Role  | Email               | Password |
+|-------|---------------------|----------|
+| Admin | saurabh44@mail.com  | 123456   |
+| Agent | saurabh@mail.com    | 123456   |
+
+
+---
+
 ## 🛠️ Tech Stack
 
 ### Frontend:
@@ -37,4 +88,11 @@ A full-stack role-based task management system where **Admins** can create **Age
 - [CSV Parser (e.g. `xlsx` or `csv-parser`)](https://www.npmjs.com/package/xlsx)
 
 ---
+
+
+
+
+
+
+
 
