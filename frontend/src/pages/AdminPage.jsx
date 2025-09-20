@@ -24,7 +24,7 @@ function AdminPage() {
     }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
-    const { upload, createAgent, isUploading } = authStore();
+    const { upload, createAgent, isUploading,isCreatingAgent } = authStore();
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -86,8 +86,8 @@ function AdminPage() {
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="flex flex-col items-center justify-center gap-2">
-                        <label className="w-full cursor-pointer">
-                            {/* <div className="flex items-center gap-3 bg-gray-100 rounded-full px-4 py-2 hover:bg-gray-200 transition justify-center">
+                        {/* <label className="w-full cursor-pointer">
+                            <div className="flex items-center gap-3 bg-gray-100 rounded-full px-4 py-2 hover:bg-gray-200 transition justify-center">
                                 <UploadCloud size={20} className="text-sky-400" />
                                 <span className="text-sm text-gray-600">
                                     {selectedFile ? 'Change File' : 'Upload File'}
@@ -99,9 +99,9 @@ function AdminPage() {
                                 accept=".csv, .xlsx, .xls"
                                 onChange={handleFileChange}
                                 className="hidden"
-                            /> */}
+                            />
 
-                        </label>
+                        </label> */}
                         <div
                             className='w-full'
                             {...getRootProps()}>
@@ -201,7 +201,7 @@ function AdminPage() {
                         variant="text"
                         className="w-full py-2 rounded-full bg-sky-400 text-white font-semibold hover:bg-sky-500 transition"
                     >
-                        Create User
+                       {isCreatingAgent ? <CircularProgress size={25} /> : 'Create User'}
                     </Button>
                 </form>
             </div>
