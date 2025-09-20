@@ -39,7 +39,6 @@ export const authStore = create((set, get) => ({
 
         } catch (error) {
             toast.error(error.response.data.message);
-            set({ isLoggingIn: false });
         } finally {
             set({ isLoggingIn: false });
         }
@@ -53,7 +52,6 @@ export const authStore = create((set, get) => ({
             set({userData:res.data})
             toast.success("Logged in successfully (Admin)");
         } catch (error) {
-            set({ isLoggingIn: false });
             toast.error(error.response.data.message);
         } finally {
             set({ isLoggingIn: false });
@@ -83,17 +81,12 @@ export const authStore = create((set, get) => ({
         try {
             const formData = new FormData();
             formData.append('file', file);
-            const res = await axiosInstance.post("/admin/uploadfile", formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            })
+            const res = await axiosInstance.post("/admin/uploadfile", formData)
 
             toast.success(res.data.message)
 
         } catch (error) {
-            set({ isUploading: false })
-            toast.error("error while uploading file")
+            toast.error(error.response?.data?.message || "File upload failed");
         } finally {
             set({ isUploading: false });
         }
@@ -108,7 +101,6 @@ export const authStore = create((set, get) => ({
             set({ agent: res.data }); // ← appends new data
         } catch (error) {
             toast.error("error while getting tasks");
-            set({ isGettingTask: false });
         } finally {
             set({ isGettingTask: false });
         }
@@ -122,7 +114,6 @@ export const authStore = create((set, get) => ({
             console.log(res)
         }catch(error){
             toast.error("error while creating agent")
-            set({isCreatingAgent:false});
         }finally{
             set({isCreatingAgent:false});
         }

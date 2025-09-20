@@ -10,7 +10,7 @@ export const getTask = async (req, res) => {
             return res.status(400).json({ message: "Agent not found" });
         }
 
-        const task = await Task.find({ assignedTo: userID })
+        const task = await Task.find({ assignedTo: userID }).sort({ createdAt: -1 });
 
         if (!task) {
             return res.status(400).json({ message: "task not found" });

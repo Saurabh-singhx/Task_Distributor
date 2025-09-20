@@ -24,6 +24,10 @@ export const uploadFile = async (req, res) => {
             return res.status(400).json({ message: 'Sheet is empty or invalid format' });
         }
 
+        if(!jsonData[0].FirstName || !jsonData[0].Phone || !jsonData[0].Notes){
+            return res.status(400).json({ message: 'Invalid file format. Required columns: FirstName, Phone, Notes' });
+        }
+
 
         const users = await User.find()
         const length = users.length;
@@ -92,5 +96,15 @@ export const createUser = async (req, res) => {
     } catch (error) {
         console.log("error in create user controller", error.message);
         return res.status(500).json({ message: "Internal server error" })
+    }
+};
+
+export const deleteUsersAllTasks = async (req, res) => {
+    try {
+        await Task.deleteMany({ });
+        res.status(200).json({ message: 'All tasks have been deleted.' });
+    } catch (error) {
+        console.log("Error in deleteAllTasks controller:", error.message);
+        res.status(500).json({ message: 'Internal server error' });
     }
 };

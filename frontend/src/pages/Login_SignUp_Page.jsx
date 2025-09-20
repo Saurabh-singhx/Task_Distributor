@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { Mail, Lock, User, Eye, LogIn, Shield } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { authStore } from '../store/authStore';
+import Button from "@mui/material/Button";
 
- function Login_SignUp_Page() {
+function Login_SignUp_Page() {
   const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState('user'); // 'user' or 'admin'
   const [formData, setFormData] = useState({
@@ -47,24 +48,47 @@ import { authStore } from '../store/authStore';
 
         {/* Role Switch Tabs */}
         <div className="flex">
-          <button
-            onClick={() => setRole('user')}
-            className={`flex-1 py-4 flex items-center justify-center gap-2 text-gray-500 font-medium transition ${
-              role === 'user' ? 'bg-white' : 'bg-gray-100'
-            }`}
+          <Button
+            variant="text"
+            onClick={() => setRole("user")}
+            sx={{
+              flex: 1,
+              py: 2,
+              display: "flex",
+              gap: 1,
+              justifyContent: "center",
+              fontWeight: 500,
+              color: "gray",
+              backgroundColor: role === "user" ? "white" : "rgb(243 244 246)", // gray-100
+              "&:hover": {
+                backgroundColor: role === "user" ? "white" : "rgb(229 231 235)", // gray-200
+              },
+            }}
           >
-            <User size={18} className="text-sky-400" />
+            <User size={18} style={{ color: "#38bdf8" }} /> {/* sky-400 */}
             User
-          </button>
-          <button
-            onClick={() => setRole('admin')}
-            className={`flex-1 py-4 flex items-center justify-center gap-2 text-gray-500 font-medium transition ${
-              role === 'admin' ? 'bg-white' : 'bg-gray-100'
-            }`}
+          </Button>
+
+          <Button
+            variant="text"
+            onClick={() => setRole("admin")}
+            sx={{
+              flex: 1,
+              py: 2,
+              display: "flex",
+              gap: 1,
+              justifyContent: "center",
+              fontWeight: 500,
+              color: "gray",
+              backgroundColor: role === "admin" ? "white" : "rgb(243 244 246)",
+              "&:hover": {
+                backgroundColor: role === "admin" ? "white" : "rgb(229 231 235)",
+              },
+            }}
           >
-            <Shield size={18} className="text-sky-400" />
+            <Shield size={18} style={{ color: "#38bdf8" }} />
             Admin
-          </button>
+          </Button>
         </div>
 
         {/* Avatar */}
@@ -118,17 +142,18 @@ import { authStore } from '../store/authStore';
           </div>
 
           {/* Submit */}
-          <button
+          <Button
+            sx={{ ":hover": { backgroundColor: "#2BABE3" }, borderRadius: '99px', bgcolor: '#38bdf8', color: 'white' }}
+            variant="text"
             type="submit"
             disabled={isLoggingIn}
-            className={`w-full py-2 rounded-full font-semibold transition ${
-              isLoggingIn
-                ? 'bg-sky-300 cursor-not-allowed text-white'
-                : 'bg-sky-400 hover:bg-sky-500 text-white'
-            }`}
+            className={`w-full py-2 rounded-full font-semibold transition ${isLoggingIn
+              ? 'bg-sky-300 cursor-not-allowed text-white'
+              : 'bg-sky-400 hover:bg-sky-500 text-white'
+              }`}
           >
             {isLoggingIn ? 'Logging in...' : `Login as ${role === 'admin' ? 'Admin' : 'User'}`}
-          </button>
+          </Button>
         </form>
       </div>
     </div>
